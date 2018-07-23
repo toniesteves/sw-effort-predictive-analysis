@@ -1,0 +1,889 @@
+--------------------------------------------------------
+ISBSG Attributes
+Attributes 1 - 94 below are used in isbg10.arff. 
+http://promisedata.googlecode.com/svn/trunk/effort/isbsg10/isbsg10.arff
+
+Attributes 95 - 116 are included in cosmic.arff.
+http://promisedata.googlecode.com/svn/trunk/effort/cosmic/cosmic.arff
+--------------------------------------------------------
+
+
+1. ISBSG Project ID
+   A primary key, for identifying projects in the ISBSG repository.
+   (These Identification numbers have been ‘randomised’ to remove any chance of 
+   identifying a company).
+   
+2. Project Rating (Data_Quality)
+   This field contains an ISBSG rating code of A, B, C or D applied to the 
+   project data by the ISBSG quality reviewers to denote the following:
+
+		A = The data submitted was assessed as being sound with nothing being identified that might affect its integrity.
+		B = The submission appears fundamentally sound but there are some factors which could affect the integrity of the submitted data.
+		C = Due to significant data not being provided, it was not possible to assess the integrity of the submitted data.
+		D = Due to one factor or a combination of factors, little credibility should be given to the submitted data.
+		
+3. Unadjusted Function Point Rating (UFP)
+   This field contains an ISBSG rating code applied to the Functional Size 
+   (Unadjusted Function Point count) data  by the ISBSG quality reviewers to 
+   denote the following:
+
+		A = The unadjusted FP was assessed as being sound with nothing being identified that might affect its integrity
+		B = The unadjusted function point count appears sound, but integrity cannot be assured as a single figure was provided
+		C = Due to unadjusted FP or count breakdown data not being provided, it was not possible to provide the unadjusted FP data
+		D = Due to one factor or a combination of factors, little credibility should be given to the unadjusted FP data		
+   
+4. Year of Project (Year)
+   Year of Project, derived from implementation date (if known), or from other 
+   project dates such as:
+
+		.   Project end date
+		.   Project start date
+		.   Estimated implementation date
+		.   Data compilation date
+
+		If no project date known, it is the year of data receipt by the ISBSG
+		
+5. Industry Sector (IS)
+   This is a derived field which attempts to summarise Organisation Type of the 
+   project into a single value of a defined set:
+
+		.   Banking
+		.   Communication
+		.   Construction
+		.   Defence & Aerospace
+		.   Education
+		.   Electronics & Computers
+		.   Energy Sources
+		.   Environment & Waste
+		.   Financial
+		.   Government
+		.   Insurance
+		.   Manufacturing
+		.   Medical & Health Care
+		.   Mining
+		.   Professional Services
+		.   Service Industry
+		.   Tourism
+		.   Utilities
+		.   Wholesale & Retail		
+   
+6. Organisation Type (OT)
+   This identifies the type of organisation that submitted the project. 
+   (e.g.: Banking, Manufacturing, Retail).   
+   
+7. Application Group (AG)
+   This is a derived field that groups Application Type of the project into a 
+   single value of a defined set:
+
+		.   Business Application
+		.   Real-Time Application
+		.   Mathematically-Intensive Application
+		.   Infrastructure Software   
+		
+8. Application Type (AT)
+	 This identifies the type of application being addressed by the project. 
+	 (e.g.: information system, transaction/production system, process control.)
+	 
+9. Development Type (DT)
+	 This field describes whether the development was a new development, 
+	 enhancement or re-development.	 
+	 
+10. Development Platform (DP)
+		Defines the primary development platform, 
+    (as determined by the operating system used).
+
+		Each project is classified as either, a PC, Mid Range, Main Frame or Multi 
+		platform.	 
+		
+11. Language Type (LT)
+		Defines the language type used for the project: e.g. 3GL, 4GL, Application 
+		Generator etc.		
+		
+12. Primary Programming Language (PPL)
+		The primary language used for the development: JAVA, C++, PL/1, Natural, 
+		Cobol etc.
+		
+13. Count Approach (CA)
+		A description of the technique used to size the project.
+
+		For most projects in the ISBSG repository this is the Functional Size 
+		Measurement Method (FSM Method) used to measure the functional size (e.g. 
+		IFPUG, MARK II, NESMA, FiSMA, COSMIC etc.).  The size of these projects is 
+		included in the next 3 columns.
+
+		Projects using the IFPUG FSM method version 4 or greater are indicated as 
+		'IFPUG' whereas projects sized using a version prior to versipon 4 are 
+		indicated in this column as 'IFPUG old'.
+
+		For projects using Other Size Measures (e.g. LOC etc.) the size data is in 
+		the section 'Size Other than FSM' (columns DN - DP). This separation helps 
+		you to compare apples with apples.		
+		
+14. Functional Size (FS)
+		The Unadjusted Function Point count (before adjustment by a Value Adjustment 
+		Factor if used).
+
+		This may be reported in different units depending on the FSM Method.
+
+		For IFPUG, NESMA, FiSMA & MARK II counts:
+
+		Where a full size breakdown is provided, this is the calculated 
+		functionality un-adjusted by any adjustment factors.
+
+		Where no size breakdown is provided, but a total adjusted count and 
+		adjustment factor is given, this is the unadjusted functionality calculated 
+		from the given data.
+
+		Where an unadjusted functional size is provided, this is that value.
+
+		Where no unadjusted functional count is provided or can be calculated, this 
+		value is blank.
+
+		For COSMIC-FFP counts:
+		This is total functional size, in COSMIC Function Points (CFP).
+
+		For OTHER size measure counts:
+		the size data is in the section 'Size Other than FSM' in Lines of Code or 
+		Other size units.		
+		
+15. Relative Size (RS)
+		Categories the Functional Size by relative sizes as follows:
+
+		Relative Size                        Functional Size
+		Extra-extra-small XXS              	 => 0 and <10
+		Extra-small XS                       => 10 and <30
+		Small  S                             => 30 and <100
+		Medium1 M1                           => 100 and <300
+		Medium2 M2                           => 300 and <1000
+		Large L                              => 1,000 and < 3,000
+		Extra-large XL                       => 3,000 and < 9,000
+		Extra-extra-large XXL                => 9,000 and < 18,000
+		Extra-extra-extra-large XXXL         => 18,000
+		
+16. Normalised Level 1 Work Effort (N_effort_level1)
+		Development team full life-cycle effort
+
+		For projects covering less than a full development life-cycle, this value is 
+		an estimate of the full life-cycle effort for the development team only. 
+
+		For projects covering the full development life-cycle, and projects where 
+		life-cycle coverage is not known, this value is not normalised and is the 
+		same as reported work effort for the development team.
+
+		For projects where the development team effort is not known this value is 
+		blank.		
+		
+17. Normalised Work Effort (N_effort)
+		Full life-cycle effort for all teams reported
+
+		For projects covering less than a full development life-cycle, this value is 
+		an estimate of the full life-cycle effort for all  reported teams. 
+
+		For projects covering the full development life-cycle, and projects where 
+		life-cycle coverage is not known, this value is the same as Summary Work 
+		Effort.
+
+		For projects where the Summary Work Effort is not known this value is blank.
+		
+18. Summary Work Effort (S_effort)
+		Total effort in hours recorded against the project.
+
+		For projects covering less than a full development life-cycle, this value 
+		only covers effort for the phases reported. It includes effort for all 
+		reported teams.
+
+		For projects covering the full development life-cycle, and projects where 
+		life-cycle coverage is not known, this value is the total effort for all 
+		reported teams.
+
+		For projects where the total effort is not known this value is blank.
+		
+19. Normalised Level 1 Productivity Delivery Rate (N_PDR1)
+		(unadjusted function points)
+		in hours per functional size unit calculated as:
+	  Normalised Level 1 Work Effort for development team only / Functional Size
+
+		This is the delivery rate currently recommended by the ISBSG.
+
+		Use of normalised effort for development team only and unadjusted functional 
+		count should render the most comparable rates.
+
+		The units used in this column vary according to the Count Approach:
+
+		For IFPUG, NESMA, FiSMA, & MARK II:
+      = hours per function point  (hours/UFP)
+
+		For COSMIC FFP:
+      = hours per Cosmic function point  (hours/CFP)
+
+		For Others:
+      = hours per functional size unit  (hours/fsu)		
+      
+20. Normalised Productivity Delivery Rate (N_PDR)
+		(unadjusted function points)
+		in hours per functional size unit calculated as:
+		  Normalised Work Effort / Functional Size
+
+		This is the delivery rate for the project used and reported by the ISBSG 
+		since the year 2002.
+
+		Use of normalised effort and unadjusted count should render more comparable 
+		rates than un-normalised effort and adjusted count.
+
+		The units used in this column vary according to the Count Approach:
+
+		For IFPUG, NESMA, FiSMA, & MARK II:
+      = hours per function point  (hours/UFP)
+
+		For COSMIC FFP:
+      = hours per Cosmic function point  (hours/CFP)
+
+		For Others:
+      = hours per functional size unit  (hours/fsu)
+      
+21. Speed of Delivery Rate (SDR)
+ 		Functional Size Units per person per elapsed month calculated as:
+  	Functional Size / Project Elapsed Time * Max Team Size
+
+		Measures the speed achieved by the project team in delivering a quantity of 
+		software over a period of time.  It is defined as the Functional Size of the 
+		delivered software (measured in functional size units), over the Project 
+		Elapsed Time (measured in months) multiplied by the number of people in the 
+		project team.  It is expressed as Functional Points per person per elapsed 
+		month.       
+		
+22. Project Elapsed Time (PET)
+		Total elapsed time for the project in calendar months.		
+		
+23. Project Inactive Time (PIT)
+    This is the number of calendar months in which no activity occurred,
+ 
+		(e.g.: awaiting client sign off, awaiting acceptance test data).  
+
+		This time, subtracted from Project Elapsed Time, derives the actual time 
+		spent working on the project.		
+		
+24. Implementation Date (I_Date)
+		Actual date of implementation.
+ 
+		(Note: Where the exact date is not known the date is shown as the 1st of the 
+		implementation month in the format 1/mm/yy).
+
+		Where the project had multiple implementations, this is the date of the 1st 
+		or major implementation.		
+		
+25. Project Activity Scope (PAS)
+		This data indicates what activities or tasks were included in the total 
+		project work effort data recorded. The activities or tasks are:
+ 
+		Planning, Specify, Design, Build, Test, and Implement.		
+		
+26. Work Effort Recording Method (Recording_Method)
+		The method used to obtain work effort data:
+ 
+			.  Staff Hours (Recorded) – The WORK EFFORT reported comes from a "daily" 
+			recording of all the WORK EFFORT expended by each person on project 
+			related tasks.
+ 
+			.  Staff Hours (Derived) – The WORK EFFORT reported is derived from time 
+			records that indicate, for example, the assignment of people to the 
+			project. This might entail estimating that, for example, only 75% of the 
+			assigned time was actually applied to the project; the rest is for 
+			holidays, education, etc.
+
+			.  Productive Time Only – The WORK EFFORT reported is only for the 
+			"productive time" spent by each person on the project. This often amounts 
+			to only 5-6 hours per day.
+
+			.  Combination – A combination of recorded and derived methods was used to 
+			obtain the WORK EFFORT.
+
+			.  No timesheets recorded by development team – No timesheets were 
+			recorded by the development team.
+
+			.  Recorded total hours each day or week – Only the total hours worked 
+			each day or week was recorded as WORK EFFORT.
+
+			.  Recorded hours on each project/day/week – The WORK EFFORT was recorded 
+			as hours worked on each project for each day/week.
+		
+			.  Recorded work on project tasks each day – The WORK EFFORT was recorded 
+			for each project task for each day.
+		
+27. Resource Level (Resource_Level)
+		Data is collected about the people whose time is included in the work effort 
+		data reported. Four levels are identified in the ISBSG data repository.
+
+		1 = development team effort (e.g., project team, project management, project 
+		administration)
+
+		2 = development team support (e.g., database administration, data 
+		administration, quality assurance, data security, standards support, audit 
+		& control, technical support)
+
+		3 = computer operations involvement (e.g., software support, hardware 
+		support, information centre support, computer operators, network 
+		administration)
+
+		4 = end users or clients (e.g., user liaisons, user training time, 
+		application users and/or clients)
+ 
+		The number in this field indicates that all effort at this and preceding 
+		levels is included in the effort fields.  For example, a “3” in this field 
+		for a project means that the work effort for the development team, 
+		development team support and computer operations is included in the work 
+		effort number.
+		
+28. Max Team Size (MTS)
+		The maximum number of people that worked at any time on the project, 
+		(peak team size).
+
+		This number is given for the Development Team (level 1) only.		
+		
+29. Average Team Size (ATS)
+		The average number of people that worked on the project, 
+		(calculated from the team sizes per activity, and only given where team 
+		sizes per activity are known).
+
+		This number is given for the Development Team (level 1) only.		
+		
+30. Ratio of Project Work Effort to Non-Project Activity (R_PWE_NPA)
+		The ratio of Project Work Effort to Non-Project Activities.		
+		
+31. Percentage of Uncollected Work Effort (P_UWE)
+		The percentage of Work Effort not reflected in the reported data. i.e. an 
+		estimate of the work effort time not collected by the method used.
+
+		The report typically is stated in the following terms:
+
+			.  less than 5% of that recorded, 
+			.  between 5% and 10% of that recorded,  
+			.  ___ % over that recorded, and 
+			.  unable to estimate
+		
+32. CASE Tool Used (CASE_Tool)
+		Whether the project used any CASE tool.
+ 
+		The full repository holds a breakdown of CASE usage for those projects that  
+		reported using a CASE tool:
+
+			.  Upper CASE tool
+			.  Lower CASE tool with code generator
+			.  Lower CASE tool without code generator
+			.  Integrated CASE tool
+			.  Other CASE tool		
+			
+33. Used Methodology (UM)
+		States whether a development methodology was used by the development team to 
+		build the software.			
+		
+34. How Methodology Acquired (HMA)
+		Describes whether the development methodology was purchased or developed 
+		in-house, or a combination of these.		
+		
+35. 1st Hardware (Hardware1)
+		Where known, this is the primary technology hardware platform used to build 
+		or enhance the software	(i.e. that used for most of the build effort).		
+		
+36. 1st Language (Language1)
+		Where known, this is the primary technology programming language used to 
+		build or enhance the software (i.e. that used for most of the build effort).		
+		
+37. 1st Operating System (OS1)
+		Where known, this is the primary technology operating system used to build 
+		or enhance the software (i.e. that used for most of the build effort).		
+		
+38. Integrated Development Environment (IDE)
+		Where known, this is the primary Integrated Development Environment, a 
+		development environment integrating a range of tools to aid the processes of 
+		designing, constructing and testing the software; typically, incorporating 
+		graphical and component based development techniques. 		
+		
+39. 1st Debugging Tool (DT1)
+		Where known, this is the primary technology debugging tool used to build or 
+		enhance the software (i.e. that used for most of the build effort), 
+		otherwise (if known) it is whether the project used a debugging tool.		
+		
+40. 1st Data Base System (DBS1)
+		Where known, this is the primary technology database used to build or 
+		enhance the software (i.e. that used for most of the build effort), 
+		otherwise (if known) it is whether the project used a DBMS.		
+		
+41. 1st Component Server (CS1)
+		Where known, this is the primary technology object/component server used to 
+		build or enhance the software (i.e. that used for most of the build effort), 
+		otherwise (if known) it is whether the project used an object/component 
+		server.		
+		
+42. 1st Web Server (WS1)
+		Where known, this is the primary technology HTML/Web server used to build or 
+		enhance the software (i.e. that used for most of the build effort); 
+		otherwise (if known) it is whether the project used an HTML/Web server.		
+		
+43. 1st Message Server (MS1)
+		Where known, this is the primary technology E-Mail or message server used to 
+		build or enhance the software (i.e. that used for most of the build effort), 
+		otherwise (if known) it is whether the project used an E-Mail or message 
+		server.
+
+44. 1st Other Platform (OP1)
+		Where known, this is any other component of the primary technology used to 
+		build or enhance the software (i.e. that used for most of the build effort).		
+		
+45. FP Standard  (FPS)
+		(Function Size Metric Used)
+		The functional size metric used to record the size of the project, 
+		(e.g. IFPUG3, IFPUG4 [version 4 series = 4.0,4.1, 4.1.1, 4.2 etc], in-house 
+		etc.). 
+
+		Where more than 1 standard has been recorded for the project, this column 
+		has been rationalised to 1 value.
+
+46. FP Standards All  (FPSA)
+		(All Function Size Metrics Used)
+		All functional size metrics used to record the size of the project. This 
+		column shows all standards recorded for the project, 
+		(e.g. IFPUG3;IFPUG4;in-house).		
+		
+47. Reference Table Approach (RTA)
+		This describes the approach used to assess tables of code or reference data 
+		(a comment field), for their contribution to functional size.		
+		
+48. Business Area Type (BAT)
+		This identifies the subset within the organisation being addressed by the 
+		project. It may be different to the organisation type or the same.
+		(e.g.: Manufacturing, Personnel, Finance).		
+		
+49. Software Process CMMI (SP_CMMI)
+		Software standards define a series of actions and documentation structures 
+		and contents required to deliver quality software and software processes. 
+
+		Software standards are maintained by international organisations.
+
+		Software developers are typically required to be formally and externally 
+		assessed in order to achieve certification to these standards.
+
+		This column indicates if the project was performed under CMMI processes.
+
+		Where available, details such as the level or version, and year of 
+		certification are included.		
+		
+50. Software Process ISO (SP_ISO)
+		Software standards define a series of actions and documentation structures 
+		and contents required to deliver quality software and software processes. 
+
+		Software standards are maintained by international organisations.
+
+		Software developers are typically required to be formally and externally 
+		assessed in order to achieve certification to these standards.
+
+		This column indicates if the project was performed under ISO processes.
+
+		Where available, details such as the version, and year of certification are 
+		included.
+
+51. Software Process TICKIT (SP_TICKIT)
+		Software standards define a series of actions and documentation structures 
+		and contents required to deliver quality software and software processes. 
+
+		Software standards are maintained by international organisations.
+
+		Software developers are typically required to be formally and externally 
+		assessed in order to achieve certification to these standards.
+
+		This column indicates if the project was performed under TICKIT processes.
+
+		Where available, details such as the version, and year of certification are 
+		included.
+
+52. Minor Defects Delivered (MIN_Defects)
+		Minor defects reported in the first month of use of the software.
+
+		This column is the number of Minor defects reported.
+
+53. Major Defects Delivered (MAJ_Defects)
+		Major defects reported in the first month of use of the software.
+
+		This column is the number of Major defects reported.
+
+54. Extreme Defects Delivered (X_Defects)
+		Extreme defects reported in the first month of use of the software.
+
+		This column is the number of Extreme defects reported.
+
+55. Total Defects Delivered (TOT_Defects)
+		Total number of defects reported in the first month of use of the software.
+
+		This column shows the total of defects reported (Minor, Major and Extreme).
+		or Where no breakdown is available, the single value is shown here 
+		(if known).
+		
+56. User Base - Business Units (UB_BU)
+		Number of distinct business units (or project business stakeholders) 
+		serviced by the software application. 
+
+		The number of distinct business units serviced by the software application. 
+
+		Where the application covers multiple sets of users, a Business Unit is 
+		where a distinct set of business rules applies to a distinct set of 
+		application users.
+
+		This column contains numeric values and text representing number range or 
+		approximate value. The data has been collected in different forms dependent 
+		on the version of the questionnaire used or the precision of the submitter's 
+		data.
+
+		Interpretation of these values is at the discretion of the user.		
+		
+57. User Base - Locations (UB_L)
+		Number of physical locations being serviced/supported by the installed 
+		software application. 
+
+		The number of physical locations being serviced/supported by the installed 
+		software application. A ‘distinct installation’ is an individual 
+		installation of the complete software system.
+
+		This column contains numeric values and text representing number range or 
+		approximate value. The data has been collected in different forms dependent 
+		on the version of the questionnaire used or the precision of the submitter's 
+		data.
+
+		Interpretation of these values is at the discretion of the user.
+
+58. User Base - Distinct Users (UB_DU)
+		Number of distinct end users using the system.
+
+		The total number of end users that can invoke the application.
+
+		This column contains numeric values and text representing number range or 
+		approximate value. The data has been collected in different forms dependent 
+		on the version of the questionnaire used or the precision of the submitter's 
+		data.
+
+		Interpretation of these values is at the discretion of the user.		
+		
+59. User Base - Concurrent Users (UB_CU)
+		Number of end users using the system concurrently.
+
+		The total number of end users using the system concurrently. The term 
+		concurrent end users applies to a single distinct installation.
+
+		This column contains numeric values and text representing number range or 
+		approximate value. The data has been collected in different forms dependent 
+		on the version of the questionnaire used or the precision of the submitter's 
+		data.
+
+		Interpretation of these values is at the discretion of the user.
+
+60. Intended Market (IMarket)
+		This field describes the relationship between the project’s customer, end 
+		users and development team.
+ 
+61. Target Platform (T_Platform)
+		The implementation platform of the software product. The platform that the 
+		software was implemented into.
+
+		The implementation platform may be different from that on which the software 
+		was developed, or may be the only platform known for the project.
+
+		A Multi platform environment would include aspects of more than one of the 
+		categories Mainframe, Midrange, or PC.
+
+62. Device Embedded (D_Embedded)
+		For mobile or device embedded software, this specifies the generic device 
+		into which the software is implemented.
+		
+63. Size estimate (SE):
+		Estimate of the functional size (ie. IFPUG Function Points, COSMIC Function 
+		Points) made during the Planning activity for the project.
+ 
+64. Size estimate approach (SEA):
+		Functional size approach used for the size estimate.
+ 
+65. Size estimate method (SEM):
+		Method used to estimate the functional size.
+ 
+66. Effort estimate (E_Estimate):
+		Estimate of the effort for the project (in hours) made during the planning 
+		activity.
+ 
+67. Effort estimate method (E_Estimate_Method):
+		Method used to estimate the effort.
+		
+68. Delivery date estimate (DDE):
+		Estimate of the delivery date for the project made during the planning 
+		activity.
+ 
+69. Delivery date estimate method (DDEM):
+		Method used to estimate the delivery date.
+ 
+70. Cost estimate (C_Estimate):
+		Estimate of the cost for the project made during the planning activity.
+ 
+71. Cost estimate currency (CEC):
+		Currency used to express the cost estimate.
+ 
+72. Cost estimate method (CEM):
+		Method used to estimate the cost.
+ 
+73. Estimating tool (E_Tool):
+		Name or description of any tools used in calculating project estimates.
+		This data comes from an earlier version of the ISBSG data collection 
+		questionnaire
+
+74. Estimating comments (E_Comments):
+		Any comments on the project planning or estimates.
+ 
+75. Estimate compilation date (EC_Date):
+		Date of compilation of the estimate data.
+		This data comes from an earlier version of the ISBSG data collection 
+		questionnaire
+
+76. Software reuse? (SR?)
+		Indicates if this project made no reuse of previous software development 
+		work.
+
+		Promoters of reuse claim that it improves development productivity. 
+
+77. Software reuse (SR)
+		If this project made any reuse of software development work products created 
+		prior to the project, this is the form of this reuse.
+
+		(If an enhancement project, the concept of reuse excludes the existing 
+		software that the project is enhancing.)
+
+		Purchased components: Collection of source code/objects 
+		(or compiled objects) purchased separately from the programming languages 
+		used.
+
+		In-house components / libraries: Collection of source code/objects formed 
+		and maintained by the development organisation itself.
+
+		Purchased framework/foundation: Extensive set of software classes designed 
+		to be the foundation of a product and purchased separately from the 
+		programming language.
+
+78. Reuse FP count (R_FPC)
+		If there was reuse of software development work products on this project, 
+		this is the amount of functionality provided by reused work products.
+
+		Software development work products include software components, libraries or 
+		frameworks. 
+
+79. Reuse FP approach (R_FPA)
+		If there was reuse of software development work products on this project, 
+		this is the approach used to measure it.
+
+		The ‘amount of functionality’ is measured using Function Points or some 
+		other measure. 
+
+80. Plan Defects (P_Defects)
+		Defects reported in the Planning activity.
+		This column is the total number of defects reported for the activity.
+
+81. Specification Defects (S_Defects)
+		Defects reported in the Specification activity.
+		This column is the total number of defects reported for the activity.
+
+82. Design Defects (D_Defects)
+		Defects reported in the Design activity.
+		This column is the total number of defects reported for the activity.
+		
+83. Minor Build Defects (MIN_B_Defects)
+		Minor defects reported in the Build activity.
+		This column is the number of Minor defects reported for the activity.
+
+84. Major Build Defects (MAJ_B_Defects)
+		Major defects reported in the Build activity.
+		This column is the number of Major defects reported for the activity.
+
+85. Extreme Build Defects (X_B_Defects)
+		Extreme defects reported in the Build activity.
+		This column is the number of Extreme defects reported for the activity.
+
+86. Total Build Defects (TOT_B_Defects)
+		Total number of defects reported in the Build activity.
+		This column shows the total of defects reported (Minor, Major and Extreme).
+		or 
+		Where no breakdown is available, the single value is shown here (if known).
+
+87. Minor Test Defects (MIN_T_Defects)
+		Minor defects reported in the Test activity.
+		This column is the number of Minor defects reported for the activity.
+
+88. Major Test Defects (MAJ_T_Defects)
+		Major defects reported in the Test activity.
+		This column is the number of Major defects reported for the activity.
+
+89. Extreme Test Defects (X_T_Defects)
+		Extreme defects reported in the Test activity.
+		This column is the number of Extreme defects reported for the activity.
+
+90. Total Test Defects (TOT_T_Defects)
+		Total number of defects reported in the Test activity.
+		This column shows the total of defects reported (Minor, Major and Extreme).
+		or 
+		Where no breakdown is available, the single value is shown here (if known).
+
+91. Minor Implementation Defects (MIN_I_Defects)
+		Minor defects reported in the Implementation activity.
+		This column is the number of Minor defects reported for the activity.
+
+92. Major Implementation Defects (MAJ_I_Defects)
+		Major defects reported in the Implementation activity.
+		This column is the number of Major defects reported for the activity.
+
+93. Extreme Implementation Defects (X_I_Defects)
+		Extreme defects reported in the Implementation activity.
+		This column is the number of Extreme defects reported for the activity.
+
+94. Total Implementation Defects (TOT_I_Defects)
+		Total number of defects reported in the Implementation activity.
+		This column shows the total of defects reported (Minor, Major and Extreme).
+		or 
+		Where no breakdown is available, the single value is shown here (if known).
+		
+95. Work Effort Breakdown (Plan) (E_Plan)
+		When provided in the submission, this field contains the breakdown of 
+		Summary Work Effort reported for Plan phase within the range:
+		Plan, Specify, Design, Build, Test and Implement.		
+		
+96. Work Effort Breakdown (Specify) (E_Specify)
+		When provided in the submission, this field contains the breakdown of 
+		Summary Work Effort reported for Specify phase within the range:
+		Plan, Specify, Design, Build, Test and Implement.		
+		
+97. Work Effort Breakdown (Design) (E_Design)
+		When provided in the submission, this field contains the breakdown of 
+		Summary Work Effort reported for Design phase within the range:
+		Plan, Specify, Design, Build, Test and Implement.
+
+		(Note: For many projects in the ISBSG repository that were collected prior 
+		to version 5 of the collection package, high level design was included in 
+		the Specify phase and low level design was included in the Build phase. For 
+		these projects no value will be included in this column).
+		
+98. Work Effort Breakdown (Build) (E_Build)
+		When provided in the submission, this field contains the breakdown of 
+		Summary Work Effort reported for Build phase within the range:
+		Plan, Specify, Design, Build, Test and Implement.
+
+99. Work Effort Breakdown (Test) (E_Test)
+		When provided in the submission, this field contains the breakdown of 
+		Summary Work Effort reported for Test phase within the range:
+		Plan, Specify, Design, Build, Test and Implement.
+
+100. Work Effort Breakdown (Implement) (E_Implement)
+		 When provided in the submission, this field contains the breakdown of the 
+		 Summary Work Effort reported for Implementation phase within the range:
+		 Plan, Specify, Design, Build, Test and Implement.		
+
+101. Unrecorded Component of  Work Effort (E_Unrecorded)
+		 Where no activity breakdown of effort is provided in the submission, this 
+		 will be equal to the Summary Work Effort.
+		 
+		 Where an activity breakdown of effort is given, and the sum of that 
+		 breakdown does not equal the Summary Work Effort, this is the value of the 
+		 difference.
+		 
+		 Where an activity breakdown of effort is given, and the sum of that 
+		 breakdown equals the Summary Work Effort, this  value is zero.
+		 
+102. Team Size Group (TSG)
+			Categories Max Team Size by into groups to increase number of projects selected, as follows:
+
+			Team Size Group
+			1                           => 1.55
+			2                           = 1.55 to <2.5
+			3-4                         = 2.5  to <4.5
+			5-8                         = 4.5  to <8.5
+			9-14                        = 8.5  to <14.5
+			15-20                       = 14.5 to <20.5
+			21-30                       = 20.5 to <30.5
+			31-40                       = 30.5 to <40.5
+			41-50                       = 40.5 to <50.5
+			51-60                       = 50.5 to <60.5
+			61-70                       = 60.5 to <70.5
+			71-80                       = 70.5 to <80.5
+			81-90                       = 80.5 to <90.5
+			91-100                     	= 90.5 to <100.5
+			100 +                       =>100
+			
+103. Development Methodologies (Dev_Methodologies)
+		 Methodologies used during development. (e.g.: Agile, Prototyping, 
+		 Waterfall etc.).
+
+104. Development Techniques (Dev_Techniques)
+		 Techniques used during development. (e.g.: JAD, Data Modelling, OO 
+		 Analysis etc.).
+		 
+		 Note these techniques have not been recorded as being specific to a 
+		 particular project activity and therefore may apply to any part of the 
+		 development lifecycle.
+
+105. JAD Method Used (JAD_Method)
+		 Whether the project used any JAD Method.
+ 
+		 The repository holds fields of methods used in the project and specifically 
+		 in specification or design.
+
+		 This column indicates if any Joint Application Design methods were 
+		 reported.
+
+106. Prototyping Method Used (PMU)
+		 Whether the project used any Prototyping Method.
+ 
+		 The repository holds fields of methods used in the project.
+
+		 This column indicates if any Prototyping methods were reported.
+		 
+107. Architecture 
+		 A derived attribute for the project to indicate if the application is:
+
+			.  Stand alone 
+			.  Multi-tier
+			.  Client server
+			.  Multi-tier with web public interface
+
+108. Client Server? (Client_Server?)
+		 Indicator of whether the application or product requires more than one 
+		 computer to operate different components or parts of it
+		 (Yes, No or Don't Know).
+
+109. Client Roles (Client_Roles)
+		 The roles performed by the computers that provide interface to the 
+		 software’s external users.
+ 
+110. Server Roles (Server_Roles)
+		 The services provided by the host/server computer(s) to the software 
+		 application or product.
+ 
+111. Type of Server (TOS)
+		 A description of the server to the software application or product.
+		 This data comes from earlier versions of the questionnaire than the 
+		 current.
+
+112. Client/Server Description (CS_Description)
+		 A description of the architecture of the client/server software application 
+		 or product.
+		 This data comes from earlier versions of the questionnaire than the 
+		 current.
+
+113. DBMS Used (DBMS_Used)
+		 Whether the project used a DBMS.
+		 Either in primary or secondary platforms.
+
+114. Upper CASE Used (Upper_CASE_Used)
+		 Whether the project used an upper CASE tool.
+		 
+115. Other CASE tool (Other_CASE_Tools?)
+		 Computer-Aided Software Engineering of some other type.
+
+		 These were specified in  the data submission as either "Other CASE" or as 
+		 "Lower CASE" but with out specifying with or without code generation. 
+
+116. Other CASE names (Other_CASE_Tool_Names)
+		 The names of any other CASE technology.
+
+		 These were specified in  the data submission as either "Other CASE" or as 
+		 "Lower CASE" but with out specifying with or without code generation. 		 
