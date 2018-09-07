@@ -13,12 +13,11 @@ from scipy.stats.stats import pearsonr
 from sklearn.model_selection import cross_val_score
 import pandas as pd
 import numpy as np
+
 from sklearn.linear_model import LinearRegression
-from sklearn.svm import SVR
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.model_selection import GridSearchCV
-from sklearn.metrics import mean_squared_error, accuracy_score, mean_absolute_error, classification_report, r2_score
-from sklearn.model_selection import LeaveOneOut 
+from sklearn.svm import SVR
 from sklearn.cross_validation import train_test_split
 
 # Formatação mais bonita para os notebooks
@@ -28,6 +27,7 @@ import matplotlib.pyplot as plt
 %matplotlib inline
 plt.style.use('fivethirtyeight')
 plt.rcParams['figure.figsize'] = (15,5)
+
 ```
 
 
@@ -152,6 +152,207 @@ df_desharnais.head()
       <td>24</td>
       <td>208</td>
       <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+df_desharnais.info()
+```
+
+    <class 'pandas.core.frame.DataFrame'>
+    RangeIndex: 81 entries, 0 to 80
+    Data columns (total 13 columns):
+    id                 81 non-null int64
+    Project            81 non-null int64
+    TeamExp            81 non-null int64
+    ManagerExp         81 non-null int64
+    YearEnd            81 non-null int64
+    Length             81 non-null int64
+    Effort             81 non-null int64
+    Transactions       81 non-null int64
+    Entities           81 non-null int64
+    PointsNonAdjust    81 non-null int64
+    Adjustment         81 non-null int64
+    PointsAjust        81 non-null int64
+    Language           81 non-null int64
+    dtypes: int64(13)
+    memory usage: 8.3 KB
+
+
+
+```python
+df_desharnais.describe()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>Project</th>
+      <th>TeamExp</th>
+      <th>ManagerExp</th>
+      <th>YearEnd</th>
+      <th>Length</th>
+      <th>Effort</th>
+      <th>Transactions</th>
+      <th>Entities</th>
+      <th>PointsNonAdjust</th>
+      <th>Adjustment</th>
+      <th>PointsAjust</th>
+      <th>Language</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>81.000000</td>
+      <td>81.000000</td>
+      <td>81.000000</td>
+      <td>81.000000</td>
+      <td>81.000000</td>
+      <td>81.000000</td>
+      <td>81.000000</td>
+      <td>81.000000</td>
+      <td>81.000000</td>
+      <td>81.000000</td>
+      <td>81.000000</td>
+      <td>81.000000</td>
+      <td>81.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>41.000000</td>
+      <td>41.000000</td>
+      <td>2.185185</td>
+      <td>2.530864</td>
+      <td>85.740741</td>
+      <td>11.666667</td>
+      <td>5046.308642</td>
+      <td>182.123457</td>
+      <td>122.333333</td>
+      <td>304.456790</td>
+      <td>27.629630</td>
+      <td>289.234568</td>
+      <td>1.555556</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>23.526581</td>
+      <td>23.526581</td>
+      <td>1.415195</td>
+      <td>1.643825</td>
+      <td>1.222475</td>
+      <td>7.424621</td>
+      <td>4418.767228</td>
+      <td>144.035098</td>
+      <td>84.882124</td>
+      <td>180.210159</td>
+      <td>10.591795</td>
+      <td>185.761088</td>
+      <td>0.707107</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>-1.000000</td>
+      <td>-1.000000</td>
+      <td>82.000000</td>
+      <td>1.000000</td>
+      <td>546.000000</td>
+      <td>9.000000</td>
+      <td>7.000000</td>
+      <td>73.000000</td>
+      <td>5.000000</td>
+      <td>62.000000</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>21.000000</td>
+      <td>21.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>85.000000</td>
+      <td>6.000000</td>
+      <td>2352.000000</td>
+      <td>88.000000</td>
+      <td>57.000000</td>
+      <td>176.000000</td>
+      <td>20.000000</td>
+      <td>152.000000</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>41.000000</td>
+      <td>41.000000</td>
+      <td>2.000000</td>
+      <td>3.000000</td>
+      <td>86.000000</td>
+      <td>10.000000</td>
+      <td>3647.000000</td>
+      <td>140.000000</td>
+      <td>99.000000</td>
+      <td>266.000000</td>
+      <td>28.000000</td>
+      <td>255.000000</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>61.000000</td>
+      <td>61.000000</td>
+      <td>4.000000</td>
+      <td>4.000000</td>
+      <td>87.000000</td>
+      <td>14.000000</td>
+      <td>5922.000000</td>
+      <td>224.000000</td>
+      <td>169.000000</td>
+      <td>384.000000</td>
+      <td>35.000000</td>
+      <td>351.000000</td>
+      <td>2.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>81.000000</td>
+      <td>81.000000</td>
+      <td>4.000000</td>
+      <td>7.000000</td>
+      <td>88.000000</td>
+      <td>39.000000</td>
+      <td>23940.000000</td>
+      <td>886.000000</td>
+      <td>387.000000</td>
+      <td>1127.000000</td>
+      <td>52.000000</td>
+      <td>1116.000000</td>
+      <td>3.000000</td>
     </tr>
   </tbody>
 </table>
@@ -426,7 +627,7 @@ df_desharnais.corr()
 
 ```python
 colormap = plt.cm.viridis
-plt.figure(figsize=(12,12))
+plt.figure(figsize=(10,10))
 plt.title('Pearson Correlation of Features', y=1.05, size=15)
 sns.set(font_scale=1.05)
 sns.heatmap(df_desharnais.drop(['id'], axis=1).astype(float).corr(),linewidths=0.1,vmax=1.0, square=True,cmap=colormap, linecolor='white', annot=True)
@@ -435,19 +636,18 @@ sns.heatmap(df_desharnais.drop(['id'], axis=1).astype(float).corr(),linewidths=0
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x116305ac8>
+    <matplotlib.axes._subplots.AxesSubplot at 0x115f7e550>
 
 
 
 
-![png](output_6_1.png)
+![png](output_8_1.png)
 
+
+## Split  train/test data
 
 
 ```python
-# split into train and test
-neigh = KNeighborsRegressor(n_neighbors=3, weights='uniform')
-
 features = [ 'TeamExp', 'ManagerExp', 'YearEnd', 'Length', 'Transactions', 'Entities',
         'PointsNonAdjust', 'Adjustment', 'PointsAjust']
 
@@ -455,12 +655,15 @@ max_corr_features = ['Length', 'Transactions', 'Entities','PointsNonAdjust','Poi
 
 X = df_desharnais[max_corr_features]
 y = df_desharnais['Effort']
-
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=30)
 ```
+
+## 1) Knn Regression
 
 
 ```python
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=30)
+
+neigh = KNeighborsRegressor(n_neighbors=3, weights='uniform')
 neigh.fit(X_train, y_train) 
 print(neigh.score(X_test, y_test))
 ```
@@ -468,23 +671,14 @@ print(neigh.score(X_test, y_test))
     0.7379861869550943
 
 
+## 2) Linear Regression
+
+
 
 ```python
-model = LinearRegression()
-
-features = ['TeamExp', 'ManagerExp', 'YearEnd', 'Length', 'Transactions', 'Entities',
-        'PointsNonAdjust', 'Adjustment', 'PointsAjust']
-
-max_corr_features = ['Length', 'Transactions', 'Entities','PointsNonAdjust','PointsAjust']
-
-X = df_desharnais[max_corr_features]
-y = df_desharnais['Effort']
-
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=22)
-```
 
-
-```python
+model = LinearRegression()
 model.fit(X_train, y_train)
 print(model.score(X_test, y_test))
 ```
@@ -492,20 +686,57 @@ print(model.score(X_test, y_test))
     0.7680074954440712
 
 
+## 3) Support Vector Machine
+
+
 
 ```python
+# for x in range(0, 101):
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=22)
+
+parameters = {'kernel':('linear', 'rbf'), 'C':[1,2,3,4,5,6,7,8,9,10]}
+
+svr = SVR()
+LinearSVC = GridSearchCV(svr, parameters)
+LinearSVC.fit(X_train, y_train)
+print("Best params hash: {}".format(LinearSVC.best_params_))
+print(LinearSVC.score(X_test, y_test))
+```
+
+    Best params hash: {'C': 1, 'kernel': 'linear'}
+    0.735919788126071
+
+
+## 4) Polynomial Regression
+
+
+# -- Plot Results --
+
+
+```python
+
 plt.figure(figsize=(18,6))
+plt.rcParams['legend.fontsize'] = 18
+plt.rcParams['legend.loc']= 'upper left'
+plt.rcParams['axes.labelsize']= 32
 
 for i, feature in enumerate(max_corr_features):
    
+    # Knn Regression Model 
     xs, ys = zip(*sorted(zip(X_test[feature], neigh.fit(X_train, y_train).predict(X_test))))
     
+    # Linear Regression Model 
     model_xs, model_ys = zip(*sorted(zip(X_test[feature], model.fit(X_train, y_train).predict(X_test))))
-
     
-    plt.scatter(X_test[feature], y_test, label='Real data', lw=1,alpha= 0.7, c='k' )
-    plt.plot(model_xs, model_ys , lw=1, label='Linear Regression Model')
-    plt.plot(xs, ys , lw=1,label='K Neighbors Regressor Model', c='r')
+    # Support Vector Machine
+    svc_model_xs, svc_model_ys = zip(*sorted(zip(X_test[feature], LinearSVC.fit(X_train, y_train).predict(X_test))))
+
+    plt.scatter(X_test[feature], y_test, label='Real data', lw=2,alpha= 0.7, c='k' )
+    plt.plot(model_xs, model_ys , lw=2, label='Linear Regression Model', c='cornflowerblue')
+    plt.plot(xs, ys , lw=2,label='K Nearest Neighbors (k=3)', c='yellowgreen')
+    plt.plot(svc_model_xs, svc_model_ys , lw=2,label='Support Vector Machine (Kernel=Linear)', c='gold')
+    
     plt.xlabel(feature)
     plt.ylabel('Effort')
     plt.legend()
@@ -513,21 +744,21 @@ for i, feature in enumerate(max_corr_features):
 ```
 
 
-![png](output_11_0.png)
+![png](output_19_0.png)
 
 
 
-![png](output_11_1.png)
+![png](output_19_1.png)
 
 
 
-![png](output_11_2.png)
+![png](output_19_2.png)
 
 
 
-![png](output_11_3.png)
+![png](output_19_3.png)
 
 
 
-![png](output_11_4.png)
+![png](output_19_4.png)
 
