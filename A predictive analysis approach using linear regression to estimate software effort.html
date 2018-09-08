@@ -11811,13 +11811,12 @@ of 76%</em></p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">from</span> <span class="nn">scipy.io</span> <span class="k">import</span> <span class="n">arff</span>
 <span class="kn">from</span> <span class="nn">scipy.stats.stats</span> <span class="k">import</span> <span class="n">pearsonr</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="k">import</span> <span class="n">cross_val_score</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
@@ -11825,7 +11824,7 @@ of 76%</em></p>
 <span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="k">import</span> <span class="n">KNeighborsRegressor</span>
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="k">import</span> <span class="n">GridSearchCV</span>
 <span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="k">import</span> <span class="n">SVR</span>
-<span class="kn">from</span> <span class="nn">sklearn.cross_validation</span> <span class="k">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="k">import</span> <span class="n">train_test_split</span>
 
 <span class="c1"># Formatação mais bonita para os notebooks</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
@@ -11843,7 +11842,7 @@ of 76%</em></p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_desharnais</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../Datasets/02.desharnais.csv&#39;</span><span class="p">,</span>  <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -11860,7 +11859,7 @@ of 76%</em></p>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[14]:</div>
+<div class="prompt output_prompt">Out[13]:</div>
 
 
 
@@ -11992,7 +11991,7 @@ of 76%</em></p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_desharnais</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
@@ -12040,7 +12039,7 @@ memory usage: 8.3 KB
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_desharnais</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
@@ -12056,7 +12055,7 @@ memory usage: 8.3 KB
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[16]:</div>
+<div class="prompt output_prompt">Out[15]:</div>
 
 
 
@@ -12255,7 +12254,7 @@ memory usage: 8.3 KB
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_desharnais</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
@@ -12271,7 +12270,7 @@ memory usage: 8.3 KB
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[17]:</div>
+<div class="prompt output_prompt">Out[16]:</div>
 
 
 
@@ -12531,7 +12530,7 @@ memory usage: 8.3 KB
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">colormap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">viridis</span>
@@ -12551,13 +12550,13 @@ memory usage: 8.3 KB
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[18]:</div>
+<div class="prompt output_prompt">Out[17]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x116131ac8&gt;</pre>
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x116178cc0&gt;</pre>
 </div>
 
 </div>
@@ -14397,7 +14396,7 @@ AGAJFFsAAABYAsUWAAAAlkCxBQAAgCVQbAEAAGAJvwDHNepGgpgYuwAAAABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">&#39;TeamExp&#39;</span><span class="p">,</span> <span class="s1">&#39;ManagerExp&#39;</span><span class="p">,</span> <span class="s1">&#39;YearEnd&#39;</span><span class="p">,</span> <span class="s1">&#39;Length&#39;</span><span class="p">,</span> <span class="s1">&#39;Transactions&#39;</span><span class="p">,</span> <span class="s1">&#39;Entities&#39;</span><span class="p">,</span>
@@ -14418,13 +14417,49 @@ AGAJFFsAAABYAsUWAAAAlkCxBQAAgCVQbAEAAGAJvwDHNepGgpgYuwAAAABJRU5ErkJggg==
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Models-Costruction">Models Costruction<a class="anchor-link" href="#Models-Costruction">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In this study the following algorithms were used: Linear Regression and K-Nearest Neighbors
+Regression. The training of the regressors models were performed on 67% of the
+instances</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="1)-Knn-Regression">1) Knn Regression<a class="anchor-link" href="#1)-Knn-Regression">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The K-Nearest Neighbor Regression is a simple algorithm that stores all
+available cases and predict the numerical target based on a similarity measure and it’s
+been used in a statistical estimation and pattern recognition as non-parametric technique
+classifying correctly unknown cases calculating euclidean distance between data points.
+In fact our choice by K-Nearest Neighbor Regression was motivated by the absence
+of a detailed explanation about how effort attribute value is calculated on Desharnais
+dataset. In the K-Nearest Neighbor Regression we choose to specify only 3 neighbors
+for k-neighbors queries and uniform weights, that means all points in each neighborhood
+are weighted equally.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.33</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
@@ -14465,9 +14500,22 @@ AGAJFFsAAABYAsUWAAAAlkCxBQAAgCVQbAEAAGAJvwDHNepGgpgYuwAAAABJRU5ErkJggg==
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The regression analysis aims to verify the existence of a functional relationship
+between a variable with one or more variables, obtaining an equation that explains the
+variation of the dependent variable Y, by the variation of the levels of the independent
+variables. The training of the Linear Regression model consists of generating a regression
+for the target variable Y.</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.33</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
@@ -14510,12 +14558,10 @@ AGAJFFsAAABYAsUWAAAAlkCxBQAAgCVQbAEAAGAJvwDHNepGgpgYuwAAAABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># for x in range(0, 101):</span>
-
-<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.33</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.33</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
 
 <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;kernel&#39;</span><span class="p">:(</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="s1">&#39;rbf&#39;</span><span class="p">),</span> <span class="s1">&#39;C&#39;</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">]}</span>
 
@@ -14554,7 +14600,7 @@ AGAJFFsAAABYAsUWAAAAlkCxBQAAgCVQbAEAAGAJvwDHNepGgpgYuwAAAABJRU5ErkJggg==
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="4)-Polynomial-Regression">4) Polynomial Regression<a class="anchor-link" href="#4)-Polynomial-Regression">&#182;</a></h2>
+<h2 id="Results">Results<a class="anchor-link" href="#Results">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -14562,13 +14608,15 @@ AGAJFFsAAABYAsUWAAAAlkCxBQAAgCVQbAEAAGAJvwDHNepGgpgYuwAAAABJRU5ErkJggg==
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="---Plot-Results---">-- Plot Results --<a class="anchor-link" href="#---Plot-Results---">&#182;</a></h1>
+<p>The figure shows the linear model (blue line) prediction is fairly close to Knn model effort prediction (red line), predicting the numerical target based on a similarity measure.
+    According to the plot we observe that Linear Regression model (blue line) presents a better performance. Although Knn Regression model (red line) is fairly close to data points, the Linear Regression model shows a smaller mean squared error.  It is possible to observe that the lines of both models present a slight tendency to rise, which justifies their correlation with the increase in effort. Some metrics are also highlighted by the presence of outliers.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>

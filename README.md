@@ -24,7 +24,6 @@ of 76%_
 import math
 from scipy.io import arff
 from scipy.stats.stats import pearsonr
-from sklearn.model_selection import cross_val_score
 import pandas as pd
 import numpy as np
 
@@ -32,7 +31,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.model_selection import GridSearchCV
 from sklearn.svm import SVR
-from sklearn.cross_validation import train_test_split
+from sklearn.model_selection import train_test_split
 
 # Formatação mais bonita para os notebooks
 import seaborn as sns
@@ -650,7 +649,7 @@ sns.heatmap(df_desharnais.drop(['id'], axis=1).astype(float).corr(),linewidths=0
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x116131ac8>
+    <matplotlib.axes._subplots.AxesSubplot at 0x116178cc0>
 
 
 
@@ -671,7 +670,23 @@ X = df_desharnais[max_corr_features]
 y = df_desharnais['Effort']
 ```
 
+## Models Costruction
+
+In this study the following algorithms were used: Linear Regression and K-Nearest Neighbors
+Regression. The training of the regressors models were performed on 67% of the
+instances
+
 ## 1) Knn Regression
+
+The K-Nearest Neighbor Regression is a simple algorithm that stores all
+available cases and predict the numerical target based on a similarity measure and it’s
+been used in a statistical estimation and pattern recognition as non-parametric technique
+classifying correctly unknown cases calculating euclidean distance between data points.
+In fact our choice by K-Nearest Neighbor Regression was motivated by the absence
+of a detailed explanation about how effort attribute value is calculated on Desharnais
+dataset. In the K-Nearest Neighbor Regression we choose to specify only 3 neighbors
+for k-neighbors queries and uniform weights, that means all points in each neighborhood
+are weighted equally.
 
 
 ```python
@@ -687,6 +702,12 @@ print(neigh.score(X_test, y_test))
 
 ## 2) Linear Regression
 
+
+The regression analysis aims to verify the existence of a functional relationship
+between a variable with one or more variables, obtaining an equation that explains the
+variation of the dependent variable Y, by the variation of the levels of the independent
+variables. The training of the Linear Regression model consists of generating a regression
+for the target variable Y.
 
 
 ```python
@@ -705,8 +726,6 @@ print(model.score(X_test, y_test))
 
 
 ```python
-# for x in range(0, 101):
-
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=22)
 
 parameters = {'kernel':('linear', 'rbf'), 'C':[1,2,3,4,5,6,7,8,9,10]}
@@ -722,10 +741,10 @@ print(LinearSVC.score(X_test, y_test))
     0.735919788126071
 
 
-## 4) Polynomial Regression
+## Results 
 
-
-# -- Plot Results --
+   The figure shows the linear model (blue line) prediction is fairly close to Knn model effort prediction (red line), predicting the numerical target based on a similarity measure.
+    According to the plot we observe that Linear Regression model (blue line) presents a better performance. Although Knn Regression model (red line) is fairly close to data points, the Linear Regression model shows a smaller mean squared error.  It is possible to observe that the lines of both models present a slight tendency to rise, which justifies their correlation with the increase in effort. Some metrics are also highlighted by the presence of outliers.
 
 
 ```python
@@ -758,21 +777,21 @@ for i, feature in enumerate(max_corr_features):
 ```
 
 
-![png](output_21_0.png)
+![png](output_25_0.png)
 
 
 
-![png](output_21_1.png)
+![png](output_25_1.png)
 
 
 
-![png](output_21_2.png)
+![png](output_25_2.png)
 
 
 
-![png](output_21_3.png)
+![png](output_25_3.png)
 
 
 
-![png](output_21_4.png)
+![png](output_25_4.png)
 
