@@ -5,6 +5,20 @@ If you publish material based on PROMISE data sets then, please
 follow the acknowledgment guidelines posted on the PROMISE repository
 web page http://promise.site.uottawa.ca/SERepository .
 
+## _Abstract_
+
+_Making decisions with a highly uncertain level is a critical problem
+in the area of software engineering. Predicting software quality requires high
+accurate tools and high-level experience. Otherwise, AI-based predictive models
+could be a useful tool with an accurate degree that helps on the prediction
+of software effort based on historical data from software development metrics.
+In this study, we built a software effort estimation model to predict this effort
+using a linear regression model. This statistical model was developed using a
+non-parametric linear regression algorithm based on the K-Nearest Neighbours
+(KNN). So, our results show the possibility of using AI methods to predict the
+software engineering effort prediction problem with an coefficient of determination
+of 76%_
+
 
 ```python
 import math
@@ -29,6 +43,10 @@ plt.style.use('fivethirtyeight')
 plt.rcParams['figure.figsize'] = (15,5)
 
 ```
+
+    /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/sklearn/cross_validation.py:41: DeprecationWarning: This module was deprecated in version 0.18 in favor of the model_selection module into which all the refactored classes and functions are moved. Also note that the interface of the new CV iterators are different from that of this module. This module will be removed in 0.20.
+      "This module will be removed in 0.20.", DeprecationWarning)
+
 
 
 ```python
@@ -641,7 +659,7 @@ sns.heatmap(df_desharnais.drop(['id'], axis=1).astype(float).corr(),linewidths=0
 
 
 
-![png](output_8_1.png)
+![png](output_10_1.png)
 
 
 ## Split  train/test data
@@ -744,21 +762,21 @@ for i, feature in enumerate(max_corr_features):
 ```
 
 
-![png](output_19_0.png)
+![png](output_21_0.png)
 
 
 
-![png](output_19_1.png)
+![png](output_21_1.png)
 
 
 
-![png](output_19_2.png)
+![png](output_21_2.png)
 
 
 
-![png](output_19_3.png)
+![png](output_21_3.png)
 
 
 
-![png](output_19_4.png)
+![png](output_21_4.png)
 
