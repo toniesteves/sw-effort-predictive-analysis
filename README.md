@@ -44,10 +44,6 @@ plt.rcParams['figure.figsize'] = (15,5)
 
 ```
 
-    /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/sklearn/cross_validation.py:41: DeprecationWarning: This module was deprecated in version 0.18 in favor of the model_selection module into which all the refactored classes and functions are moved. Also note that the interface of the new CV iterators are different from that of this module. This module will be removed in 0.20.
-      "This module will be removed in 0.20.", DeprecationWarning)
-
-
 
 ```python
 df_desharnais = pd.read_csv('../Datasets/02.desharnais.csv',  header=0)
@@ -654,7 +650,7 @@ sns.heatmap(df_desharnais.drop(['id'], axis=1).astype(float).corr(),linewidths=0
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x115f7e550>
+    <matplotlib.axes._subplots.AxesSubplot at 0x116131ac8>
 
 
 
